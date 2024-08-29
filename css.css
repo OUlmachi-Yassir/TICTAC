@@ -19,6 +19,7 @@ body {
 
 .game-container {
     text-align: center;
+    margin: auto;
 }
 #reset-button {
     margin-top: 20px;

@@ -8,6 +8,9 @@ function createBoard() {
         const row = document.createElement("tr");
         for (let j = 0; j < BOARD_SIZE; j++) {
             const col = document.createElement("td");
+            col.addEventListener("click", function() { 
+                col.innerHTML = "x";  
+            });
             row.appendChild(col);
         }
         gameBoard.appendChild(row);
@@ -17,4 +20,10 @@ function createBoard() {
 };
 createBoard();
 console.log(BOARD_SIZE)
+
+document.getElementById("reset-button").onclick =function(){
+    createBoard();
+}
+    
+
 
