@@ -1,0 +1,75 @@
+:root {
+    font-family: Inter, sans-serif;
+    font-feature-settings: 'liga' 1, 'calt' 1; /* fix for Chrome */
+  }
+  @supports (font-variation-settings: normal) {
+    :root { font-family: InterVariable, sans-serif; }
+  }
+
+  
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #ffffff;
+}
+
+.game-container {
+    text-align: center;
+}
+#reset-button {
+    margin-top: 20px;
+    padding: 5px 40px;
+    box-shadow:0px  5px 5px  #5e5e5e;
+    font-size:30px;
+    font-family:inter;
+    font-weight: 900;
+    letter-spacing: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    color: rgb(255, 255, 255);
+    border:1px solid #5e5e5e;
+    background-color: rgb(123, 121, 121);
+}
+h1{
+    font-size:60px;
+    font-family:inter;
+    font-weight: 900;
+    color: #e2e1e1;
+    letter-spacing: 30px;
+    text-shadow:  0 0 5px #000000;
+}
+#player-turn{
+    font-size:20px;
+    font-family:inter;
+    font-weight: 900;
+    color: #000000;
+}
+#game-story{
+    margin-top: 20px;
+    padding: 5px 40px;
+    box-shadow:0px  5px 5px  #5e5e5e;
+    font-size:30px;
+    font-family:inter;
+    font-weight: 900;
+    letter-spacing: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    color: rgb(255, 255, 255);
+    border:1px solid #5e5e5e;
+    background-color: rgb(123, 121, 121);
+}
+
+#game-board{
+    border:3px solid #000000;
+}
+
+#game-board td{
+    width: 30px;
+    height: 30px;
+    border:3px solid #000000;
+}
+
