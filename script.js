@@ -16,13 +16,12 @@ function createBoard() {
         gameBoard.appendChild(row);
         
     }
-    console.log(BOARD_SIZE)
+
 };
 createBoard();
-console.log(BOARD_SIZE)
 
 document.getElementById("reset-button").onclick =function(){
-    createBoard();
+   createBoard();
 }
     
 
