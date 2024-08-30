@@ -42,6 +42,7 @@ function createBoard() {
                     }
                 }
             });
+            
             row.appendChild(col);
         }
         gameBoard.appendChild(row);
@@ -107,7 +108,23 @@ function isBoardFull() {
 
 function saveGameHistory(winner) {
     gameHistory.push({ playerX: playerXName, playerO: playerOName, winner });
+    localStorage.setItem("gameHistory", JSON.stringify(gameHistory));
 }
+
+window.onload = function () {
+    playerXName = localStorage.getItem("playerXName") || "";
+    playerOName = localStorage.getItem("playerOName") || "";
+
+    const savedGameHistory = localStorage.getItem("gameHistory");
+    if (savedGameHistory) {
+        gameHistory = JSON.parse(savedGameHistory);
+    }
+
+    createBoard();
+    if (playerXName && playerOName) {
+        document.getElementById("player-turn").innerHTML = `${currentPlayer === "X" ? playerXName : playerOName}'s turn`;
+    }
+};
 
 document.getElementById("reset-button").onclick = function () {
     resetGame();
@@ -123,7 +140,8 @@ document.getElementById("start-game").onclick = function () {
         return;
     }
 
-    
+    localStorage.setItem("playerXName", playerXName);
+    localStorage.setItem("playerOName", playerOName);
     resetGame();
     createBoard();
 };
