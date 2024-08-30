@@ -27,7 +27,7 @@ function createBoard() {
         const row = document.createElement("tr");
         for (let j = 0; j < BOARD_SIZE; j++) {
             const col = document.createElement("td");
-            col.addEventListener("click", function () {
+            function handleClick() {
                 if (!gameStarted) {
                     showMessage("Please enter both players' names and click Start Game to begin.");
                     return;
@@ -40,15 +40,18 @@ function createBoard() {
                         showWinnerMessage(`${winnerName} wins!`);
                         saveGameHistory(winnerName);
                         updateScores(winnerName);
+                        col.removeEventListener("click", handleClick);
                     } else if (isBoardFull()) {
                         showWinnerMessage("It's a draw!");
                         saveGameHistory("Draw");
+                        col.removeEventListener("click", handleClick);
                     } else {
                         currentPlayer = currentPlayer === "X" ? "O" : "X";
                         document.getElementById("player-turn").innerHTML = `${currentPlayer === "X" ? playerXName : playerOName}'s turn`;
                     }
                 }
-            });
+            }
+            col.addEventListener("click", handleClick);
 
             row.appendChild(col);
         }
