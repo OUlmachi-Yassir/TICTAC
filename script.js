@@ -6,6 +6,7 @@ let boardState = [];
 let gameHistory = [];
 let playerXName = "";
 let playerOName = "";
+let gameStarted = false;  
 
 for (let i = 0; i < BOARD_SIZE; i++) {
     boardState[i] = [];
@@ -21,8 +22,8 @@ function createBoard() {
         for (let j = 0; j < BOARD_SIZE; j++) {
             const col = document.createElement("td");
             col.addEventListener("click", function () {
-                if (!playerXName || !playerOName) {
-                    showMessage("Please enter both players' names to start the game.");
+                if (!gameStarted) {
+                    showMessage("Please enter both players' names and click Start Game to begin.");
                     return;
                 }
                 if (!col.innerHTML && !boardState[i][j]) {
@@ -31,7 +32,6 @@ function createBoard() {
                     if (checkWinner(i, j)) {
                         const winnerName = currentPlayer === "X" ? playerXName : playerOName;
                         showWinnerMessage(`${winnerName} wins!`);
-                        console.log(winnerName);
                         saveGameHistory(winnerName);
                     } else if (isBoardFull()) {
                         showWinnerMessage("It's a draw!");
@@ -42,7 +42,7 @@ function createBoard() {
                     }
                 }
             });
-            
+
             row.appendChild(col);
         }
         gameBoard.appendChild(row);
@@ -86,7 +86,6 @@ function checkDirection(row, col, rowIncrement, colIncrement) {
     return count >= WINNING_LENGTH;
 }
 
-
 function countInDirection(row, col, rowIncrement, colIncrement) {
     let count = 0;
     let currentRow = row + rowIncrement;
@@ -126,6 +125,7 @@ window.onload = function () {
     }
 };
 
+
 document.getElementById("reset-button").onclick = function () {
     resetGame();
     createBoard();
@@ -143,6 +143,7 @@ document.getElementById("start-game").onclick = function () {
     localStorage.setItem("playerXName", playerXName);
     localStorage.setItem("playerOName", playerOName);
     resetGame();
+    gameStarted = true;  
     createBoard();
 };
 
@@ -158,10 +159,10 @@ function resetGame() {
     currentPlayer = "X";
 }
 
-
 document.getElementById("game-story").onclick = function () {
     const historyList = gameHistory.map((game, index) => `<li>Game ${index + 1}: ${game.playerX} vs ${game.playerO} - Winner: ${game.winner}</li>`);
-    showWinnerMessage(`<ul>${historyList}</ul>`);};
+    showWinnerMessage(`<ul>${historyList}</ul>`);
+};
 
 document.querySelector(".close-button").onclick = closeModal;
 
