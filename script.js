@@ -63,7 +63,7 @@ function showMessage(message) {
 function showWinnerMessage(message) {
     const winnerMessage = document.getElementById("winner-message");
     const winnerModal = document.getElementById("winner-modal");
-    winnerMessage.textContent = message;
+    winnerMessage.innerHTML = message;
     winnerModal.style.display = "block";
 }
 
@@ -122,6 +122,8 @@ document.getElementById("start-game").onclick = function () {
         showMessage("Please enter both players' names to start the game.");
         return;
     }
+
+    
     resetGame();
     createBoard();
 };
@@ -140,8 +142,8 @@ function resetGame() {
 
 
 document.getElementById("game-story").onclick = function () {
-    alert(gameHistory.map((game, index) => `Game ${index + 1}: ${game.playerX} vs ${game.playerO} - Winner: ${game.winner}`).join("\n"));
-};
+    const historyList = gameHistory.map((game, index) => `<li>Game ${index + 1}: ${game.playerX} vs ${game.playerO} - Winner: ${game.winner}</li>`);
+    showWinnerMessage(`<ul>${historyList}</ul>`);};
 
 document.querySelector(".close-button").onclick = closeModal;
 
