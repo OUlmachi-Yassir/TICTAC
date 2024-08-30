@@ -15,6 +15,12 @@ for (let i = 0; i < BOARD_SIZE; i++) {
     }
 }
 
+let scores = {
+    [playerXName]: { wins: 0 },
+    [playerOName]: { wins: 0 }
+};
+
+
 function createBoard() {
     gameBoard.innerHTML = "";
     for (let i = 0; i < BOARD_SIZE; i++) {
@@ -33,6 +39,7 @@ function createBoard() {
                         const winnerName = currentPlayer === "X" ? playerXName : playerOName;
                         showWinnerMessage(`${winnerName} wins!`);
                         saveGameHistory(winnerName);
+                        updateScores(winnerName);
                     } else if (isBoardFull()) {
                         showWinnerMessage("It's a draw!");
                         saveGameHistory("Draw");
@@ -110,9 +117,34 @@ function saveGameHistory(winner) {
     localStorage.setItem("gameHistory", JSON.stringify(gameHistory));
 }
 
+function updateScores(winner) {
+    if (winner === playerXName) {
+        scores[playerXName].wins = (scores[playerXName].wins || 0) + 1;
+        scores[playerOName].losses = (scores[playerOName].losses || 0) + 1;
+    } else if (winner === playerOName) {
+        scores[playerOName].wins = (scores[playerOName].wins || 0) + 1;
+        scores[playerXName].losses = (scores[playerXName].losses || 0) + 1;
+    } else if (winner === "Draw") {
+        scores[playerXName].draws = (scores[playerXName].draws || 0) + 1;
+        scores[playerOName].draws = (scores[playerOName].draws || 0) + 1;
+    }
+    displayScores();
+}
+
+
+function displayScores() {
+    const scoreDisplay = document.getElementById("score-display");
+    scoreDisplay.innerHTML = `${playerXName || "Player X"}: ${scores[playerXName]?.wins || 0} wins - ${playerOName || "Player O"}: ${scores[playerOName]?.wins || 0} wins`;
+}
+
 window.onload = function () {
     playerXName = localStorage.getItem("playerXName") || "";
     playerOName = localStorage.getItem("playerOName") || "";
+
+    if (playerXName && playerOName) {
+        scores[playerXName] = scores[playerXName] || { wins: 0 };
+        scores[playerOName] = scores[playerOName] || { wins: 0 };
+    }
 
     const savedGameHistory = localStorage.getItem("gameHistory");
     if (savedGameHistory) {
@@ -123,12 +155,14 @@ window.onload = function () {
     if (playerXName && playerOName) {
         document.getElementById("player-turn").innerHTML = `${currentPlayer === "X" ? playerXName : playerOName}'s turn`;
     }
+    displayScores();
 };
 
 
 document.getElementById("reset-button").onclick = function () {
     resetGame();
     createBoard();
+    displayScores();
 };
 
 document.getElementById("start-game").onclick = function () {
@@ -142,9 +176,12 @@ document.getElementById("start-game").onclick = function () {
 
     localStorage.setItem("playerXName", playerXName);
     localStorage.setItem("playerOName", playerOName);
+    scores[playerXName] = scores[playerXName] || { wins: 0 };
+    scores[playerOName] = scores[playerOName] || { wins: 0 };
     resetGame();
     gameStarted = true;  
     createBoard();
+    displayScores();
 };
 
 function resetGame() {
@@ -157,6 +194,7 @@ function resetGame() {
     }
     gameBoard.innerHTML = "";
     currentPlayer = "X";
+    gameStarted = false;
 }
 
 document.getElementById("game-story").onclick = function () {
