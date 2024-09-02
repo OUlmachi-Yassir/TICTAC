@@ -8,6 +8,10 @@ MediaGame est une start-up spécialisée dans le gaming en ligne. Dans le cadre 
 
 Ce projet consiste à implémenter un jeu Tic-Tac-Toe pour deux joueurs en utilisant HTML, CSS et JavaScript. Les joueurs jouent alternativement en cliquant sur les cases du plateau pour y placer soit un "X", soit un "O". Le but est d'aligner cinq symboles identiques (en ligne, en colonne ou en diagonale) pour gagner. Le jeu utilise le stockage local pour conserver les scores et les états de jeu.
 
+## Link to Jira:
+
+https://yassir-olm.atlassian.net/jira/software/projects/KAN/boards/1?atlOrigin=eyJpIjoiZDc3NGM3MzJiODE3NGJlODkxYjVmNjM5Yzk4MzRhOGEiLCJwIjoiaiJ9
+
 ## Link of my maket Using Figma:
 
 https://www.figma.com/design/xmKbtRAknZxDgJxDSxWPFN/Untitled?node-id=0-1&t=YLP433oW2qCxHah6-1
