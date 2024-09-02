@@ -1,0 +1,13 @@
+# Tic-Tac-Toe 20x20
+
+## Contexte du Projet
+
+MediaGame est une start-up spécialisée dans le gaming en ligne. Dans le cadre de leur mission d'améliorer l'expérience utilisateur, ils ont décidé de créer une version étendue du classique jeu Tic-Tac-Toe. Ce projet vise à développer un jeu Tic-Tac-Toe en ligne avec un plateau de 20x20 cases, où les joueurs peuvent jouer en ligne et stocker les résultats dans le local storage.
+
+## Description
+
+Ce projet consiste à implémenter un jeu Tic-Tac-Toe pour deux joueurs en utilisant HTML, CSS et JavaScript. Les joueurs jouent alternativement en cliquant sur les cases du plateau pour y placer soit un "X", soit un "O". Le but est d'aligner cinq symboles identiques (en ligne, en colonne ou en diagonale) pour gagner. Le jeu utilise le stockage local pour conserver les scores et les états de jeu.
+
+## Link of my maket Using Figma:
+
+https://www.figma.com/design/xmKbtRAknZxDgJxDSxWPFN/Untitled?node-id=0-1&t=YLP433oW2qCxHah6-1
